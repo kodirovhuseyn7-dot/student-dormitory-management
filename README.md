@@ -1,2 +1,86 @@
-# student-dormitory-management
-Student Dormitory Management System
+# Student Dormitory Management System (SDMS)
+
+## Коркарди веблоиҳаи идоракунии хобгоҳи донишҷӯён
+
+### 1. Маълумоти умумӣ
+
+Student Dormitory Management System (SDMS) — веб-барнома барои автоматизатсияи раванди идоракунии хобгоҳи донишҷӯён мебошад.
+
+Система барои осон намудани бақайдгирии донишҷӯён, идоракунии ҳуҷраҳо, тақсимоти ҷойҳои истиқоматӣ, назорати пардохтҳо ва таҳияи ҳисобот пешбинӣ шудааст.
+
+### 2. Мақсади лоиҳа
+
+Мақсади асосии лоиҳа таҳияи системаи ягонаи вебӣ барои идоракунии самараноки хобгоҳи донишҷӯён мебошад.
+
+### 3. Вазифаҳои лоиҳа
+
+- Таҳияи системаи бақайдгирӣ ва воридшавӣ.
+- Идоракунии маълумоти донишҷӯён.
+- Идоракунии ҳуҷраҳои хобгоҳ.
+- Тақсимоти донишҷӯён ба ҳуҷраҳо.
+- Идоракунии пардохтҳо.
+- Қабул ва баррасии аризаҳо.
+- Назорати ҷойҳои холӣ.
+- Таҳияи ҳисобот ва омор.
+
+### 4. Иштирокчиёни система
+
+1. Administrator — идоракунии пурраи система.
+2. Dormitory Manager — идоракунии ҳуҷраҳо ва донишҷӯён.
+3. Student — пешниҳоди ариза ва дидани маълумоти шахсӣ.
+
+### 5. Технологияҳои истифодашаванда
+
+| Технология | Истифода |
+|---|---|
+| Go (Golang) | Backend |
+| HTML5 | Сохтори веб |
+| CSS3 | Тарҳрезии интерфейс |
+| JavaScript | Интерактивӣ |
+| MySQL | Пойгоҳи додаҳо |
+| Git | Назорати версия |
+| GitHub | Идоракунии лоиҳа |
+
+### 6. Модулҳои асосии система
+
+- Authentication and Authorization
+- Student Management
+- Room Management
+- Room Allocation
+- Payment Management
+- Application Management
+- Reports and Statistics
+
+### 7. Сохтори лоиҳа
+
+```text
+student-dormitory-management/
+│
+├── README.md
+├── .gitignore
+│
+├── docs/
+│   ├── 01-domain-analysis.md
+│   ├── 02-comparison-matrix.md
+│   ├── 03-short-spec.md
+│   ├── 04-uml-diagrams/
+│   └── 05-database/
+│
+├── backend/
+├── frontend/
+├── database/
+└── screenshots/
+```
+
+### 8. Натиҷаи интизоршаванда
+
+Дар натиҷаи иҷрои лоиҳа веб-системаи мукаммал таҳия карда мешавад, ки раванди идоракунии хобгоҳи донишҷӯёнро автоматӣ намуда, самаранокӣ ва дақиқии кори маъмурияти хобгоҳро баланд мебардорад.
+
+### 9. Вазъи иҷрои лоиҳа
+
+Project Status: In Development
+
+---
+
+**Project:** Student Dormitory Management System  
+**Repository:** student-dormitory-management
