@@ -1,0 +1,55 @@
+@startuml deployment
+title Student Dormitory Management System: Диаграммаи ҷойгиркунӣ (Deployment Diagram)
+
+node "Компютер / Смартфони корбар" as client {
+  artifact "Браузер\n(Chrome / Firefox / Edge)" as browser
+}
+
+node "Сервери барнома" as appserver {
+  node "Муҳити иҷрои Go" as runtime {
+    artifact "Go HTTP Server\nbackend/cmd/server/main.go" as app
+
+    folder "Backend modules" as backend {
+      artifact "Routes\ninternal/routes/" as routes
+      artifact "Handlers\ninternal/handlers/" as handlers
+      artifact "Models\ninternal/models/" as models
+      artifact "Database connection\ninternal/database/connection.go" as connection
+    }
+  }
+}
+
+node "Сервери пойгоҳи додаҳо" as dbserver {
+  database "MySQL 8 / MariaDB\nstudent_dormitory\n(utf8mb4)" as db {
+    artifact "users" as users
+    artifact "students" as students
+    artifact "dormitories" as dormitories
+    artifact "rooms" as rooms
+    artifact "applications" as applications
+    artifact "allocations" as allocations
+    artifact "payments" as payments
+  }
+}
+
+browser --> app : HTTP / HTTPS
+app --> routes : Коркарди масирҳо
+routes --> handlers : Интиқоли дархостҳо
+handlers --> models : Кор бо моделҳо
+handlers --> connection : Дархост ба пойгоҳи додаҳо
+connection --> db : MySQL Driver\nTCP 3306
+
+note right of db
+  Пойгоҳи додаҳо:
+  student_dormitory
+
+  Рамзгузорӣ: utf8mb4
+  Муносибатҳо тавассути
+  PRIMARY KEY ва FOREIGN KEY
+end note
+
+note bottom of app
+  Барномаи серверӣ бо Go сохта шудааст.
+  Муҳити иҷро ва суроғаи сервер
+  вобаста ба танзимоти deployment муайян мешаванд.
+end note
+
+@enduml
