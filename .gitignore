@@ -1,0 +1,25 @@
+﻿# Go binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Compiled binaries
+server.exe
+backend/server.exe

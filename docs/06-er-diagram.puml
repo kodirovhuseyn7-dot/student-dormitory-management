@@ -1,0 +1,17 @@
+@startuml Student_Dormitory_ER_Diagram
+
+entity "users" as users {
+    * id : BIGINT <<PK>>
+    --
+    username : VARCHAR(80)
+}
+
+entity "students" as students {
+    * id : BIGINT <<PK>>
+    --
+    user_id : BIGINT <<FK>>
+}
+
+users ||--o| students : has
+
+@enduml
