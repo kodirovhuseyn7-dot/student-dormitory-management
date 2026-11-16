@@ -1,0 +1,10 @@
+<?php
+require_once __DIR__.'/db.php';require_once __DIR__.'/includes/functions.php';require_role(['admin','manager']);
+$queries=['Ҳамаи донишҷӯён'=>"SELECT COUNT(*) FROM students",'Хобгоҳҳо'=>"SELECT COUNT(*) FROM dormitories",'Ҳуҷраҳо'=>"SELECT COUNT(*) FROM rooms",'Ҷойҳои ишғолшуда'=>"SELECT COUNT(*) FROM allocations WHERE status='active'",'Дархостҳои интизорӣ'=>"SELECT COUNT(*) FROM applications WHERE status='pending'",'Пардохти умумӣ'=>"SELECT COALESCE(SUM(amount),0) FROM payments",'Пардохтшуда'=>"SELECT COALESCE(SUM(amount),0) FROM payments WHERE status='paid'",'Қарздорӣ'=>"SELECT COALESCE(SUM(amount),0) FROM payments WHERE status='overdue'"];
+$stats=[];foreach($queries as $k=>$sql)$stats[$k]=$pdo->query($sql)->fetchColumn();
+$dorms=$pdo->query("SELECT d.name,COUNT(DISTINCT r.id) rooms,COUNT(a.id) occupied FROM dormitories d LEFT JOIN rooms r ON r.dormitory_id=d.id LEFT JOIN allocations a ON a.room_id=r.id AND a.status='active' GROUP BY d.id")->fetchAll();
+$debts=$pdo->query("SELECT u.full_name,SUM(p.amount) debt FROM payments p JOIN students s ON s.id=p.student_id JOIN users u ON u.id=s.user_id WHERE p.status='overdue' GROUP BY s.id ORDER BY debt DESC")->fetchAll();$pageTitle='Ҳисобот ва омор';require __DIR__.'/includes/header.php';?>
+<h1>Ҳисобот ва омори хобгоҳ</h1><div class="grid"><?php foreach($stats as $k=>$v):?><div class="card"><p><?=e($k)?></p><strong><?=str_contains($k,'Пардохт')||str_contains($k,'Қарз')?number_format((float)$v,2).' сомонӣ':e($v)?></strong></div><?php endforeach;?></div>
+<h2>Омори хобгоҳҳо</h2><div class="table-wrap"><table><tr><th>Хобгоҳ</th><th>Ҳуҷраҳо</th><th>Ҷойҳои ишғолшуда</th></tr><?php foreach($dorms as $d):?><tr><td><?=e($d['name'])?></td><td><?=$d['rooms']?></td><td><?=$d['occupied']?></td></tr><?php endforeach;?></table></div>
+<h2>Қарздорҳо</h2><div class="table-wrap"><table><tr><th>Донишҷӯ</th><th>Қарз</th></tr><?php foreach($debts as $d):?><tr><td><?=e($d['full_name'])?></td><td><?=number_format((float)$d['debt'],2)?> сомонӣ</td></tr><?php endforeach;?></table></div>
+<?php require __DIR__.'/includes/footer.php';?>
