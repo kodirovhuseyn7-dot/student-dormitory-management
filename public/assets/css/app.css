@@ -1,0 +1,215 @@
+
+/* Lab 10 — Student Dormitory Management System */
+
+:root {
+  /* UI-kit colors */
+  --sdms-primary: #198754;
+  --sdms-primary-dark: #146c43;
+  --sdms-secondary: #6c757d;
+  --sdms-background: #ffffff;
+  --sdms-surface: #f8f9fa;
+  --sdms-text: #212529;
+  --sdms-error: #dc3545;
+  --sdms-border: #dee2e6;
+  --sdms-muted: #59636e;
+  --sdms-radius: 10px;
+
+  /* Bootstrap overrides */
+  --bs-body-font-family: "Inter", Arial, sans-serif;
+  --bs-body-font-size: 1rem;
+  --bs-body-color: var(--sdms-text);
+  --bs-body-bg: var(--sdms-background);
+  --bs-border-color: var(--sdms-border);
+  --bs-border-radius: var(--sdms-radius);
+  --bs-primary: var(--sdms-primary);
+  --bs-primary-rgb: 25, 135, 84;
+}
+
+body {
+  font-family: var(--bs-body-font-family);
+  background: var(--sdms-background);
+  color: var(--sdms-text);
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+small,
+.caption {
+  font-size: 0.875rem;
+}
+
+.app-navbar {
+  background: var(--sdms-primary-dark);
+}
+
+.app-navbar .navbar-brand {
+  font-weight: 700;
+}
+
+.btn {
+  min-height: 44px;
+  border-radius: var(--sdms-radius);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--sdms-primary);
+  --bs-btn-border-color: var(--sdms-primary);
+  --bs-btn-hover-bg: var(--sdms-primary-dark);
+  --bs-btn-hover-border-color: var(--sdms-primary-dark);
+  --bs-btn-active-bg: var(--sdms-primary-dark);
+  --bs-btn-active-border-color: var(--sdms-primary-dark);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--sdms-primary-dark);
+  --bs-btn-border-color: var(--sdms-primary);
+  --bs-btn-hover-bg: var(--sdms-primary-dark);
+  --bs-btn-hover-border-color: var(--sdms-primary-dark);
+}
+
+.form-control,
+.form-select {
+  min-height: 44px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--sdms-primary);
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.2);
+}
+
+:focus-visible {
+  outline: 3px solid var(--sdms-primary);
+  outline-offset: 2px;
+}
+
+.app-card {
+  border: 1px solid var(--sdms-border);
+  border-radius: var(--sdms-radius);
+  background: var(--sdms-background);
+}
+
+.stat-card {
+  border: 1px solid var(--sdms-border);
+  border-radius: var(--sdms-radius);
+  background: var(--sdms-surface);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--sdms-primary-dark);
+}
+
+.stat-label {
+  color: var(--sdms-muted);
+}
+
+.room-card {
+  height: 100%;
+  border: 1px solid var(--sdms-border);
+  border-radius: var(--sdms-radius);
+  transition: box-shadow 0.2s ease;
+}
+
+.room-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.room-status {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.status-available {
+  background: #e3f4ea;
+  color: #146c43;
+}
+
+.status-occupied {
+  background: #fce8e9;
+  color: #a52834;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #664d03;
+}
+
+/* CSS Grid for record details */
+.details {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 0.75rem 1rem;
+  margin: 0;
+}
+
+.details dt {
+  color: var(--sdms-muted);
+  font-weight: 500;
+}
+
+.details dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.app-footer {
+  border-top: 1px solid var(--sdms-border);
+  color: var(--sdms-muted);
+}
+
+/* Responsive table */
+@media (max-width: 767.98px) {
+  .table-cards thead {
+    display: none;
+  }
+
+  .table-cards tbody tr {
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid var(--sdms-border);
+  }
+
+  .table-cards tbody td {
+    display: block;
+    border: 0;
+    padding: 0.25rem 0;
+  }
+
+  .table-cards td[data-label]::before {
+    content: attr(data-label) ": ";
+    color: var(--sdms-muted);
+    font-weight: 600;
+  }
+}
+
+/* Mobile */
+@media (max-width: 575.98px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .details {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .details dd {
+    margin-bottom: 0.75rem;
+  }
+
+  .stat-number {
+    font-size: 1.6rem;
+  }
+}
