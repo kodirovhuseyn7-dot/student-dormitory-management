@@ -1,0 +1,130 @@
+LAB 14 - BACKEND (1)
+Composer, Front Controller, Routing and Templates
+
+PROJECT:
+Student Dormitory Management System
+
+1. COMPOSER
+Composer is used as the PHP dependency manager and autoloading tool.
+The project uses PSR-4 autoloading.
+
+PSR-4:
+App\ -> src/
+
+Command:
+composer dump-autoload
+
+2. FRONT CONTROLLER
+File:
+public/index.php
+
+The front controller is the single entry point for the routing system.
+It loads Composer autoload, helper functions, creates the Router and dispatches requests.
+
+3. ROUTER
+File:
+src/Core/Router.php
+
+The Router supports:
+- GET routes
+- POST routes
+- Route parameters such as {id}
+- 404 Not Found
+- 405 Method Not Allowed
+
+4. ROUTES
+
+GET /
+Home page
+
+GET /students
+Student list
+
+GET /students/{id}
+Student details
+
+5. CONTROLLERS
+
+HomeController:
+src/Controllers/HomeController.php
+
+StudentController:
+src/Controllers/StudentController.php
+
+6. VIEWS AND TEMPLATES
+
+Layout:
+views/layouts/main.php
+
+Partials:
+views/partials/header.php
+views/partials/footer.php
+
+Templates:
+views/pages/home.php
+views/pages/students.php
+views/pages/student.php
+views/pages/error.php
+
+7. VIEW HELPER
+
+File:
+src/Core/View.php
+
+The View helper loads templates, extracts data and renders them inside the main layout.
+
+8. SECURITY
+
+The e() helper uses htmlspecialchars with ENT_QUOTES and UTF-8
+to escape HTML output.
+
+9. URL HELPER
+
+The url() helper generates links using the project public base path.
+
+10. APACHE REWRITE
+
+File:
+public/.htaccess
+
+Apache rewrite rules redirect requests to the front controller
+while preserving existing files and directories.
+
+11. TESTS
+
+GET /:
+Home page rendered successfully.
+
+GET /students:
+HTTP 200 OK. Student list rendered.
+
+GET /students/1:
+Student details rendered with ID 1.
+
+GET /students/2:
+Student details rendered with ID 2.
+
+POST /students:
+HTTP 405 Method Not Allowed.
+
+GET /students using curl:
+HTTP 200 OK.
+
+12. PROJECT STRUCTURE
+
+composer.json
+src/Core/Router.php
+src/Core/View.php
+src/helpers.php
+src/Controllers/HomeController.php
+src/Controllers/StudentController.php
+views/layouts/main.php
+views/partials/header.php
+views/partials/footer.php
+views/pages/home.php
+views/pages/students.php
+views/pages/student.php
+views/pages/error.php
+public/index.php
+public/.htaccess
+docs/14-routes.txt

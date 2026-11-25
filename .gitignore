@@ -23,3 +23,5 @@ temp/
 # Compiled binaries
 server.exe
 backend/server.exe
+
+/vendor/
